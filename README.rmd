@@ -11,18 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Getting Started
 
-Want to download these documents... Spark I guess
+Installations (assuming you have r, rstudio, and java).
 
-```{r cars}
-summary(cars)
+```{r}
+#install.packages("sparklyr")
+library("sparklyr")
+spark_available_versions()
+#spark_install(version = "3.0")
+spark_installed_versions()
 ```
-
-## Including Plots
-
-Sample plot
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Yo.

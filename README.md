@@ -5,24 +5,41 @@ Derek Weix
 
 ## Getting Started
 
-Want to download these documents… Spark I guess
+Installations (assuming you have r, rstudio, and java).
 
 ``` r
-summary(cars)
+#install.packages("sparklyr")
+library("sparklyr")
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+    ## 
+    ## Attaching package: 'sparklyr'
 
-## Including Plots
+    ## The following object is masked from 'package:stats':
+    ## 
+    ##     filter
 
-Sample plot
+``` r
+spark_available_versions()
+```
 
-![](README_files/figure-gfm/pressure-1.png)<!-- -->
+    ##   spark
+    ## 1   1.6
+    ## 2   2.0
+    ## 3   2.1
+    ## 4   2.2
+    ## 5   2.3
+    ## 6   2.4
+    ## 7   3.0
+    ## 8   3.1
+    ## 9   3.2
 
-Yo.
+``` r
+#spark_install(version = "3.0")
+spark_installed_versions()
+```
+
+    ##   spark hadoop                                          dir
+    ## 1 2.4.3    2.7 /home/ubuntu/spark/spark-2.4.3-bin-hadoop2.7
+    ## 2 3.0.3    2.7 /home/ubuntu/spark/spark-3.0.3-bin-hadoop2.7
+    ## 3 3.0.3    3.2 /home/ubuntu/spark/spark-3.0.3-bin-hadoop3.2
