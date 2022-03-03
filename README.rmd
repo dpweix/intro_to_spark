@@ -1,0 +1,28 @@
+---
+title: "Introduction to Spark"
+author: "Derek Weix"
+date: "3/3/20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting Started
+
+Want to download these documents... Spark I guess
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+Sample plot
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Yo.
