@@ -47,3 +47,29 @@ cars <- spark_read_csv(sc, "cars.csv")
 # Extensions
 #install.packages("sparklyr.nested")
 sparklyr.nested::sdf_nest(cars, hp) |> 
+  group_by(cyl) |> 
+  summarise(data = collect_list(data))
+
+# Using R Code
+cars |> 
+  spark_apply(~ round(.))
+
+# Streaming 
+dir.create("input")
+write.csv(mtcars, "input/cars_1.csv", row.names = FALSE)
+
+stream <- 
+  stream_read_csv(sc, "input/") |> 
+  select(mpg, cyl, disp) |> 
+  stream_write_csv("output/")
+
+dir("output/", pattern = ".csv")
+stream_stop(stream)
+
+# Log Files
+spark_log(sc)
+spark_log(sc, filter = "sparklyr")
+
+# Disconnecting
+spark_disconnect(sc)
+spark_disconnect_all()
