@@ -1,0 +1,43 @@
+---
+title: "mtcars Analysis (Using Spark)"
+author: "Derek Weix"
+date: "3/25/2022"
+output: 
+  html_document: 
+    fig_width: 6
+    fig_height: 3 
+---
+
+```{r, setup}
+library("sparklyr")
+library("dplyr")
+
+sc <- spark_connect(master = "local", spark_home = "/home/ubuntu/spark/spark-3.0.3-bin-hadoop3.2")
+cars <- copy_to(sc, mtcars)
+```
+
+## Visualize
+Aggregate data in Spark, visualize in R.
+```{r, fig.align='center', warning=FALSE}
+library("ggplot2")
+
+cars |> 
+  group_by(cyl) |> 
+  summarise(mpg = mean(mpg)) |> 
+  ggplot(aes(cyl, mpg)) +
+  geom_bar(stat = 'identity')
+```
+
+## Model
+The selected model is a simple linear regression the uses weight as a predictor of MPG.
+
+```{r}
+cars |> 
+  ml_linear_regression(wt ~ mpg) |> 
+  summary()
+```
+
+```{r}
+spark_disconnect(sc)
+```
+
