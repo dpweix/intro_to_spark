@@ -8,7 +8,8 @@ spark_installed_versions()
 
 ### Usage ####################################################################
 # Create Local Cluster
-sc <- spark_connect(master = "local", version = "3.0.3")
+sc <- spark_connect(master = "local", 
+                    spark_home = "/home/ubuntu/spark/spark-3.0.3-bin-hadoop3.2")
 
 # copy mtcars into Apache spark
 cars <- copy_to(sc, mtcars)
